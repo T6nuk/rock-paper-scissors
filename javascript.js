@@ -13,3 +13,16 @@ function getComputerChoice() {
 }
 
 getComputerChoice();
+
+
+function getHumanChoice() {
+    let getOption = document.getElementById('inputButton').
+    addEventListener('click', 
+        function () {
+            const userChoice = document.getElementById('options').value;
+            console.log(userChoice);
+        }
+    )
+}
+
+getHumanChoice();
