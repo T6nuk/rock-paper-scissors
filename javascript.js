@@ -1,11 +1,11 @@
 
 function getComputerChoice() {
-    const rand = Math.floor(Math.random() * 9) + 1
+    const rand = Math.floor(Math.random() * 3) + 1
     console.log(rand);
-        if (rand <= 3) {
+        if (rand == 1) {
             return 'Rock'
             // console.log('rock');
-        } else if (rand > 3 && rand <=6) {
+        } else if (rand == 2) {
             return 'Paper'
             // console.log('paper');
         } else {
@@ -75,10 +75,7 @@ function playRound(human) {
             } else {
                 document.getElementById('declare-winner').innerHTML
             += ' Computer won'
-            }
-
-            
-            
+            }    
         }
     )
 }
