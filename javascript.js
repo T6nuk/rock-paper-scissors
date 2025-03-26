@@ -17,32 +17,70 @@ function getComputerChoice() {
 getComputerChoice();
 
 
+let userChoice = '';
 function getHumanChoice() {
-    let getOption = document.getElementById('input-button').
+    
+    let getOption = document.getElementById('user-choice').
     addEventListener('click', 
         function () {
             document.getElementById('users-pick').
             innerHTML = '';
-            const userChoice = document.getElementById('options').value;
+            userChoice = document.getElementById('options').value;
+            //console.log(userChoice);  
             document.getElementById('users-pick').
             innerHTML += 'Your choice: ' +userChoice;
+
+
+            //clear computers choice field
+            // document.getElementById('computers-pick').
+            // innerHTML = '';
+
+
+            return userChoice;
         }
     )
 }
 
 getHumanChoice();
 
-function displayComputerChoice() {
-    document.getElementById('input-button').addEventListener(
+function playRound(human) {
+    document.getElementById('play-button').addEventListener(
         'click',
         function () {
-            const computerChoice = getComputerChoice();
+            const humanSelection = document.getElementById('options').value;
+            const computerSelection = getComputerChoice();
             document.getElementById('computers-pick').innerHTML
-            = '';
-            document.getElementById('computers-pick').
-            innerHTML = 'Computers choice: ' +computerChoice;
+            = 'Computers choice: '+computerSelection;
+
+            //clear winner field
+            document.getElementById('declare-winner').innerHTML
+            = ' '
+            
+            //user input value
+            console.log(humanSelection);
+            
+            if (humanSelection == 'Rock' && computerSelection == 'Scissors') {
+                document.getElementById('declare-winner').innerHTML
+                += ' Player won'
+            } else if (humanSelection == 'Scissors' && computerSelection == 'Paper') {
+                document.getElementById('declare-winner').innerHTML
+            += ' Player won'
+                
+            } else if (humanSelection == 'Paper' && computerSelection == 'Rock') {
+                document.getElementById('declare-winner').innerHTML
+            += ' Player won'
+            } else if (humanSelection == computerSelection) {
+                document.getElementById('declare-winner').innerHTML
+            += 'It is a draw!'
+            } else {
+                document.getElementById('declare-winner').innerHTML
+            += ' Computer won'
+            }
+
+            
+            
         }
     )
 }
 
-displayComputerChoice();
+playRound();
