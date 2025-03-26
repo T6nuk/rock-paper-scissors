@@ -3,13 +3,10 @@ function getComputerChoice() {
     const rand = Math.floor(Math.random() * 3) + 1
         if (rand == 1) {
             return 'Rock'
-            // console.log('rock');
         } else if (rand == 2) {
             return 'Paper'
-            // console.log('paper');
         } else {
             return 'Scissors'
-            // console.log('scissors');
         }
 }
 
@@ -25,16 +22,8 @@ function getHumanChoice() {
             document.getElementById('users-pick').
             innerHTML = '';
             userChoice = document.getElementById('options').value;
-            //console.log(userChoice);  
             document.getElementById('users-pick').
             innerHTML += 'Your choice: ' +userChoice;
-
-
-            //clear computers choice field
-            // document.getElementById('computers-pick').
-            // innerHTML = '';
-
-
             return userChoice;
         }
     )
