@@ -11,49 +11,54 @@ function getComputerChoice() {
 
 getComputerChoice();
 
+const choiceBtn = document.querySelector("#user-choice");
+const playBtn = document.querySelector("#play-button");
+
 let userChoice = "";
 function getHumanChoice() {
-  let getOption = document
-    .querySelector("#user-choice")
-    .addEventListener("click", function () {
-      document.querySelector("#users-pick").textContent = "";
-      userChoice = document.querySelector("#options").value;
-      document.querySelector("#users-pick").textContent +=
-        "Your choice: " + userChoice;
-      return userChoice;
-    });
+  choiceBtn.addEventListener("click", function () {
+    const userPick = document.querySelector("#users-pick");
+    userPick.textContent = "";
+    userChoice = document.querySelector("#options").value;
+    userPick.textContent += "Your choice: " + userChoice;
+    return userChoice;
+  });
 }
 
 getHumanChoice();
 
+// round to five points
 function playRound() {
-  document.querySelector("#play-button").addEventListener("click", function () {
+  playBtn.addEventListener("click", function () {
     const humanSelection = document.querySelector("#options").value;
     const computerSelection = getComputerChoice();
     document.querySelector("#computers-pick").textContent =
       "Computers choice: " + computerSelection;
-    document.querySelector("#declare-winner").textContent = " ";
+    const displayWinner = document.querySelector("#declare-winner");
+    displayWinner.textContent = " ";
 
     let whoWon = "";
     let humanScore = 0;
     let computerScore = 0;
 
     if (humanSelection == "Rock" && computerSelection == "Scissors") {
-      document.querySelector("#declare-winner").textContent += " Player won";
+      displayWinner.textContent += " Player won";
       whoWon = "player";
     } else if (humanSelection == computerSelection) {
-      document.querySelector("#declare-winner").textContent += "It is a draw!";
+      displayWinner.textContent += "It is a draw!";
     } else if (humanSelection == "Scissors" && computerSelection == "Paper") {
-      document.querySelector("#declare-winner").textContent += " Player won";
+      displayWinner.textContent += " Player won";
       whoWon = "player";
     } else if (humanSelection == "Paper" && computerSelection == "Rock") {
-      document.querySelector("#declare-winner").textContent += " Player won";
+      displayWinner.textContent += " Player won";
       whoWon = "player";
     } else {
-      document.querySelector("#declare-winner").textContent += " Computer won";
+      displayWinner.textContent += " Computer won";
       whoWon = "computer";
     }
 
+    const gameFinished = document.querySelector("#when-finished");
+    const gameWinner = "";
     if (whoWon == "player") {
       humanScore++;
       let numberBox = document.querySelector("#human-score");
@@ -63,8 +68,21 @@ function playRound() {
       console.log("this is human score: " + currentNumber);
 
       if (currentNumber + 1 == 5) {
-        alert("Game over, player won!");
-        window.location.reload();
+        const para = document.createElement("p");
+        gameFinished.appendChild(para);
+        para.textContent = "Game over, player won!";
+
+        const btn = document.createElement("button");
+        gameFinished.appendChild(btn);
+        btn.textContent = "Play again";
+
+        choiceBtn.hidden = true;
+        playBtn.hidden = true;
+
+        btn.addEventListener("click", () => {
+          window.location.reload();
+        });
+        gameWinner = "player";
       }
     } else if (whoWon == "computer") {
       computerScore++;
@@ -74,8 +92,21 @@ function playRound() {
       numBoxComputer.textContent = currentComputerNumber + computerScore;
 
       if (currentComputerNumber + 1 == 5) {
-        alert("Game over, player won!");
-        window.location.reload();
+        const para = document.createElement("p");
+        gameFinished.appendChild(para);
+        para.textContent = "Game over, computer won!";
+
+        const btn = document.createElement("button");
+        gameFinished.appendChild(btn);
+        btn.textContent = "Play again";
+
+        choiceBtn.hidden = true;
+        playBtn.hidden = true;
+
+        btn.addEventListener("click", () => {
+          window.location.reload();
+        });
+        gameWinner = "computer";
       }
     }
   });
